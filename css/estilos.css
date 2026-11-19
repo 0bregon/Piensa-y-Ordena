@@ -1,0 +1,272 @@
+/* ==========================================================
+   Piensa y Ordena - Estilos
+   Etapa 3: pantalla de inicio (estilo escena de juego)
+   Diseño fluido: todo se mide en "rem" y el tamaño base crece
+   o se reduce según el ancho de la pantalla.
+   ========================================================== */
+
+/* ---- Colores y medidas (se cambian aquí) ---- */
+:root {
+  --tinta: #12294a;          /* texto y contornos */
+  --cielo: #38c6f4;
+  --azul: #1a5fb4;
+  --azul-oscuro: #134a8e;
+  --amarillo: #ffc933;
+  --naranja: #e8730f;        /* botones redondos */
+  --naranja-oscuro: #c8500a; /* cinta */
+  --blanco: #ffffff;
+  --borde: #b9d6ee;
+
+  --fuente: "Trebuchet MS", "Segoe UI", Verdana, Arial, sans-serif;
+}
+
+/* Tamaño base fluido: 14px en celulares, hasta 30px en pantallas grandes */
+html { font-size: clamp(14px, 1.1vw + 8px, 30px); }
+
+/* ---- Base ---- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  background: var(--cielo);
+}
+
+/* ---- Escena de inicio ---- */
+.escena {
+  min-height: 100vh;
+  min-height: 100dvh;        /* respeta la barra del navegador en celulares */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.25rem 0;
+  background: url("../img/fondo.svg") center bottom / cover no-repeat, var(--cielo);
+}
+
+/* ---- Título ---- */
+.cabecera { text-align: center; }
+
+.titulo {
+  display: inline-flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.15em 0.6em 0.25em;
+  font-size: min(5rem, 14vw);  /* nunca más ancho que la pantalla */
+  line-height: 1;
+  color: var(--blanco);
+  background: var(--amarillo);
+  border-radius: 0.25em 0.6em 0.3em 0.55em;
+  transform: rotate(-2deg);
+  -webkit-text-stroke: 0.12em var(--tinta);
+  paint-order: stroke fill;
+  text-shadow: 0 0.08em 0 var(--tinta);
+}
+
+.subtitulo {
+  display: inline-block;
+  max-width: 100%;
+  margin: 1rem 0 0;
+  padding: 0.2rem 1.2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background: var(--blanco);
+  border-radius: 1.3rem;
+}
+
+/* ---- Botones redondos ---- */
+.botones {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(1.5rem, 6vw, 4rem);
+  margin: 1rem 0;
+}
+
+.boton-redondo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+  font: inherit;
+  color: var(--tinta);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.circulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 8rem;
+  background: var(--naranja);
+  border-radius: 50%;
+  box-shadow: inset 0 -0.7rem 0 rgba(0, 0, 0, 0.18), 0 0.5rem 0 rgba(18, 41, 74, 0.3);
+}
+
+.grande .circulo {
+  width: 12rem;
+  height: 12rem;
+}
+
+.circulo svg {
+  width: 52%;
+  height: 52%;
+  fill: var(--blanco);
+}
+
+.etiqueta {
+  padding: 0.2rem 1.3rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background: var(--blanco);
+  border: 0.2rem solid var(--tinta);
+  border-radius: 999px;
+}
+
+.boton-redondo:active .circulo { transform: translateY(0.4rem); }
+
+.boton-redondo:focus-visible {
+  outline: 0.3rem solid var(--amarillo);
+  outline-offset: 0.4rem;
+  border-radius: 1.5rem;
+}
+
+.aviso {
+  max-width: 100%;
+  margin: 0;
+  padding: 0.1rem 1.1rem;
+  font-size: 1.05rem;
+  text-align: center;
+  background: var(--blanco);
+  border-radius: 1rem;
+}
+
+.aviso:empty { display: none; }
+
+/* ---- Mascota y cinta ---- */
+.pie {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 70rem;
+  margin-top: 0.75rem;
+}
+
+.mascota {
+  width: 9rem;
+  height: auto;
+  margin-bottom: 0.6rem;
+}
+
+.cinta {
+  margin: 0 0 1.5rem;
+  padding: 1rem 3rem 1rem 2.4rem;
+  font-size: clamp(1.1rem, 3.2vw, 2rem);
+  font-weight: bold;
+  color: var(--blanco);
+  background: var(--naranja-oscuro);
+  clip-path: polygon(0 10%, 100% 0, 96% 100%, 3% 92%);
+}
+
+/* ---- Guía didáctica (ventana) ---- */
+dialog {
+  width: min(48rem, 92vw);
+  max-height: 90vh;
+  max-height: 90dvh;
+  padding: 0;
+  overflow: auto;
+  color: var(--tinta);
+  background: var(--blanco);
+  border: 0.25rem solid var(--borde);
+  border-radius: 1.4rem;
+}
+
+dialog::backdrop { background: rgba(18, 41, 74, 0.6); }
+
+.guia-contenido { padding: 1.5rem 2rem 1.75rem; }
+
+.guia-contenido h2 {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding-bottom: 0.4rem;
+  font-size: 2rem;
+  border-bottom: 0.25rem solid var(--amarillo);
+}
+
+.guia-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+.guia-contenido h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+  color: var(--azul);
+}
+
+.guia-contenido dl { margin: 0; }
+.guia-contenido dt { margin-top: 0.6rem; font-size: 1.05rem; font-weight: bold; }
+.guia-contenido dd { margin: 0; font-size: 1.1rem; }
+.guia-contenido ul { margin: 0; padding-left: 1.4rem; }
+.guia-contenido li { margin-bottom: 0.4rem; font-size: 1.1rem; }
+
+.boton-secundario {
+  display: block;
+  margin: 1.5rem 0 0 auto;
+  padding: 0.6rem 2.2rem;
+  min-height: 3.2rem;
+  font: inherit;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--blanco);
+  background: var(--azul);
+  border: 0;
+  border-bottom: 0.3rem solid var(--azul-oscuro);
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.boton-secundario:hover { background: var(--azul-oscuro); }
+
+.boton-secundario:focus-visible {
+  outline: 0.25rem solid var(--amarillo);
+  outline-offset: 0.2rem;
+}
+
+/* ==========================================================
+   Pantallas pequeñas
+   ========================================================== */
+
+/* Tableta vertical */
+@media (max-width: 800px) {
+  .guia-columnas { grid-template-columns: 1fr; }
+  .guia-contenido { padding: 1.25rem 1.25rem 1.5rem; }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .escena { padding: 1rem 0.75rem 0; }
+  .mascota { width: 5.5rem; }
+  .cinta { padding: 0.7rem 1.8rem 0.7rem 1.5rem; margin-bottom: 1rem; }
+  .subtitulo { font-size: 1.1rem; }
+}
+
+/* Pantallas bajas (celular o tableta en horizontal) */
+@media (max-height: 560px) {
+  .titulo { font-size: min(3rem, 14vw); }
+  .circulo { width: 5.5rem; height: 5.5rem; }
+  .grande .circulo { width: 7.5rem; height: 7.5rem; }
+  .etiqueta { font-size: 1.15rem; }
+  .botones { margin: 0.5rem 0; }
+  .mascota { width: 4.5rem; }
+  .cinta { margin-bottom: 0.75rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Piensa y Ordena - Informática, primer grado</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <main id="app">
+
+    <!-- PANTALLA 1: INICIO (portada y guía didáctica) -->
+    <section id="pantalla-inicio" class="pantalla escena" aria-labelledby="titulo-inicio">
+
+      <header class="cabecera">
+        <h1 id="titulo-inicio" class="titulo"><span>Piensa</span><span>y Ordena</span></h1>
+        <p class="subtitulo">Mis primeros pasos en lógica y programación</p>
+      </header>
+
+      <div class="botones">
+        <button type="button" id="btn-guia" class="boton-redondo">
+          <span class="circulo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.5h8.5v13H2.5zM13 5.5h8.5v13H13z"/></svg>
+          </span>
+          <span class="etiqueta">Guía</span>
+        </button>
+
+        <button type="button" id="btn-comenzar" class="boton-redondo grande">
+          <span class="circulo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4.5v15l12-7.5z"/></svg>
+          </span>
+          <span class="etiqueta">Comenzar</span>
+        </button>
+      </div>
+
+      <p id="aviso" class="aviso" role="status" aria-live="polite"></p>
+
+      <div class="pie">
+        <img class="mascota" src="img/mascota.svg" alt="">
+        <p class="cinta">¡Aprende jugando!</p>
+      </div>
+
+      <!-- GUÍA DIDÁCTICA (se abre con el botón Guía) -->
+      <dialog id="guia" aria-labelledby="guia-titulo">
+        <div class="guia-contenido">
+          <h2 id="guia-titulo">Guía didáctica</h2>
+
+          <div class="guia-columnas">
+            <section aria-labelledby="datos-titulo">
+              <h3 id="datos-titulo">Datos del recurso</h3>
+              <dl>
+                <dt>Nivel educativo</dt>
+                <dd>Primer grado de primaria</dd>
+                <dt>Asignatura</dt>
+                <dd>Informática, Área 4: Lógica y Programación</dd>
+                <dt>Dirigido a</dt>
+                <dd>Estudiantes de primer grado, de 6 a 7 años</dd>
+                <dt>Objetivo de aprendizaje (MEDUCA)</dt>
+                <dd>Reconocer los principios básicos de programación a través de ejemplos simples y juegos interactivos.</dd>
+              </dl>
+            </section>
+
+            <section aria-labelledby="nav-titulo">
+              <h3 id="nav-titulo">Cómo moverte</h3>
+              <ul>
+                <li>Toca <strong>Adelante</strong> para ir a la siguiente pantalla.</li>
+                <li>Toca <strong>Atrás</strong> para volver.</li>
+                <li>Toca <strong>Inicio</strong> para regresar a esta pantalla.</li>
+                <li>Toca <strong>Mapa</strong> para elegir a dónde ir.</li>
+                <li>Toca <strong>Ayuda</strong> si no sabes qué hacer.</li>
+                <li>Toca <strong>Sonido</strong> para escuchar o silenciar.</li>
+              </ul>
+            </section>
+          </div>
+
+          <button type="button" id="btn-cerrar-guia" class="boton-secundario">Cerrar</button>
+        </div>
+      </dialog>
+
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
