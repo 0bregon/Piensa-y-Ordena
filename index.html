@@ -6,12 +6,12 @@
   <title>Piensa y Ordena - Informática, primer grado</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body data-pagina="inicio">
 
   <main id="app">
 
-    <!-- PANTALLA 1: INICIO (portada y guía didáctica) -->
-    <section id="pantalla-inicio" class="pantalla escena" aria-labelledby="titulo-inicio">
+    <!-- INICIO: portada y guía didáctica -->
+    <section class="escena" aria-labelledby="titulo-inicio">
 
       <header class="cabecera">
         <h1 id="titulo-inicio" class="titulo"><span>Piensa</span><span>y Ordena</span></h1>
@@ -21,23 +21,21 @@
       <div class="botones">
         <button type="button" id="btn-guia" class="boton-redondo">
           <span class="circulo">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.5h8.5v13H2.5zM13 5.5h8.5v13H13z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5C5 4.5 8.5 4.5 11.2 6v13.5C8.5 18 5 18 2 19zM22 5.5C19 4.5 15.5 4.5 12.8 6v13.5c2.7-1.5 6.2-1.5 9.2-.5z"/></svg>
           </span>
           <span class="etiqueta">Guía</span>
         </button>
 
-        <button type="button" id="btn-comenzar" class="boton-redondo grande">
+        <a class="boton-redondo grande" href="mapa.html">
           <span class="circulo">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4.5v15l12-7.5z"/></svg>
           </span>
           <span class="etiqueta">Comenzar</span>
-        </button>
+        </a>
       </div>
 
-      <p id="aviso" class="aviso" role="status" aria-live="polite"></p>
-
       <div class="pie">
-        <img class="mascota" src="img/mascota.svg" alt="">
+        <img class="mascota" src="img/Pixel.png" alt="">
         <p class="cinta">¡Aprende jugando!</p>
       </div>
 
@@ -74,11 +72,11 @@
             </section>
           </div>
 
-          <button type="button" id="btn-cerrar-guia" class="boton-secundario">Cerrar</button>
+          <button type="button" class="boton-secundario cerrar">Cerrar</button>
         </div>
       </dialog>
-
     </section>
+
 
   </main>
 

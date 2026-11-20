@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video - Piensa y Ordena</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="video">
+
+  <main id="app">
+    <section class="interna" aria-labelledby="titulo-pagina">
+      <div class="tarjeta">
+        <p class="etiqueta-seccion">Miro</p>
+        <h2 id="titulo-pagina">Video</h2>
+        <h3 class="subtitulo-pagina">Pensar paso a paso</h3>
+        <div class="video-caja">
+          <video controls preload="metadata" poster="img/video-portada.jpg">
+            <source src="video/pensar-paso-a-paso.webm" type="video/webm">
+            <source src="video/pensar-paso-a-paso.mp4" type="video/mp4">
+            Tu navegador no puede mostrar el video.
+          </video>
+        </div>
+        <p class="nota">Dura 41 segundos. Míralo con atención.</p>
+        <details>
+          <summary>Leer lo que dice el video</summary>
+          <ol>
+            <li>¡Hola! Soy Bit. Hoy vamos a pensar paso a paso.</li>
+            <li>Para lavarte las manos hay pasos: abre la llave, ponte jabón, frota tus manos, enjuágalas y sécalas.</li>
+            <li>¿Y si cambiamos el orden? Si te secas primero y te pones jabón después, ¡las manos no quedan limpias!</li>
+            <li>Programar es dar instrucciones en orden.</li>
+            <li>Una computadora hace lo que le dices, en el mismo orden en que se lo dices.</li>
+            <li>¡Ahora te toca a ti! Juega y ordena los pasos.</li>
+          </ol>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- La barra de navegación y la ventana de ayuda las agrega js/app.js -->
+  <script src="js/app.js"></script>
+</body>
+</html>
