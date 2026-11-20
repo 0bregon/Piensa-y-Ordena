@@ -4,44 +4,51 @@
 
 ## 🤖 Descripción del proyecto
 
-Desarrollo de una plataforma educativa interactiva dirigida a niños de primer grado (6 a 7 años), diseñada para fortalecer el pensamiento lógico y computacional mediante minijuegos, desafíos visuales y actividades de exploración.
+Plataforma educativa interactiva dirigida a estudiantes de primer grado de educación primaria (6 a 7 años), desarrollada como recurso didáctico para una microclase sobre el pensamiento lógico.
 
-La plataforma busca que los niños aprendan haciendo, experimentando y resolviendo pequeños problemas, utilizando elementos interactivos que estimulen su creatividad, razonamiento y capacidad para encontrar soluciones.
+La propuesta consiste en una colección de seis minijuegos que permiten a los niños explorar, manipular elementos y resolver desafíos mediante actividades visuales e interactivas, favoreciendo el aprendizaje a través del juego.
 
 ## 🎮 Minijuegos
 
-El proyecto está compuesto por seis actividades:
-
-| N.º | Minijuego | Habilidad desarrollada |
+| N.º | Actividad | Habilidad desarrollada |
 |---|---|---|
 | 1 | ¡Encuentra el camino! | Secuencias y algoritmos |
 | 2 | ¡Completa el tablero! | Lógica y reconocimiento de patrones |
-| 3 | ¡Ordena las instrucciones! | Pensamiento algorítmico |
+| 3 | ¡Ordena las instrucciones! | Secuenciación y pensamiento lógico |
 | 4 | ¡Descubre qué sigue! | Seriación y reconocimiento de patrones |
 | 5 | ¡Recolecta las estrellas! | Planificación y resolución de problemas |
 | 6 | ¡Construye al robot! | Organización espacial y descomposición |
 
-## 🎯 Objetivo general
+## 🎯 Objetivo
 
-Fortalecer el pensamiento lógico en niños de primer grado mediante experiencias interactivas que promuevan la exploración, la resolución de problemas y el aprendizaje a través del juego.
+Favorecer el desarrollo del pensamiento lógico en niños de primer grado mediante minijuegos interactivos que estimulen la observación, la clasificación, la seriación, la identificación de patrones y la resolución de problemas.
 
-## 📚 Enfoque pedagógico
+## 📚 Fundamentación curricular
 
-La propuesta se fundamenta en el aprendizaje por descubrimiento y el constructivismo, incorporando principios del construccionismo de Seymour Papert y el andamiaje educativo de Lev Vygotsky.
+El proyecto toma como referencia las guías curriculares del Ministerio de Educación de Panamá (MEDUCA), específicamente los indicadores de logro relacionados con el pensamiento lógico:
 
-Se busca fomentar la autonomía infantil mediante actividades en las que los niños puedan experimentar, cometer errores, identificar patrones y construir sus propias soluciones.
+- Trabaja con recursos (seriar, clasificar, parear, crucigrama, rompecabezas y dominó) para resolver situaciones aplicando el pensamiento lógico.
+- Utiliza juegos interactivos que presentan desafíos (laberintos, juegos de operaciones matemáticas y ordenamiento de secuencias) que debe resolver mediante el pensamiento lógico y comenta en clase la experiencia vivida.
+- Participa en un proyecto STEAM en donde demuestre su dominio en el tema del pensamiento lógico y programación.
 
-## 🧩 Características principales
+## 🧠 Enfoque pedagógico
 
-- Minijuegos interactivos con desafíos visuales.
-- Actividades basadas en la manipulación de elementos.
-- Dificultad progresiva.
-- Retroalimentación visual y positiva.
-- Sistema de ayuda opcional mediante pistas.
-- Exploración y experimentación sin penalizaciones.
-- Interfaz adaptada a niños que están iniciando el proceso de lectura.
+La plataforma incorpora principios del constructivismo y el aprendizaje por descubrimiento. Se promueve que los niños aprendan mediante la exploración, la experimentación y la resolución autónoma de desafíos.
 
-## 🛠️ Tecnologías
+También se contempla el andamiaje educativo mediante pistas opcionales y progresivas que orientan al estudiante sin proporcionarle directamente las soluciones.
+
+## ✨ Características
+
+- Seis minijuegos de pensamiento lógico.
+- Interacción visual y manipulativa.
+- Actividades adaptadas a niños que están iniciando la lectura.
+- Desafíos con dificultad progresiva.
+- Retroalimentación visual positiva.
+- Ayuda opcional mediante pistas.
+- Aprendizaje mediante la exploración y el descubrimiento.
+- Sin cuestionarios tradicionales ni penalizaciones por equivocarse.
+
+## 🛠️ Tecnologías utilizadas
 
 - HTML
 - CSS
@@ -49,16 +56,8 @@ Se busca fomentar la autonomía infantil mediante actividades en las que los ni�
 
 ## 👧 Público objetivo
 
-Niños de primer grado de educación primaria, aproximadamente entre 6 y 7 años.
+Estudiantes de primer grado de educación primaria, aproximadamente entre 6 y 7 años.
 
-## 📖 Fundamentación curricular
+## 💡 Propósito educativo
 
-El proyecto toma como referencia los indicadores de logro relacionados con el pensamiento lógico y la programación:
-
-- Trabaja con recursos como seriación, clasificación, pareamiento y rompecabezas para resolver situaciones aplicando el pensamiento lógico.
-- Utiliza juegos interactivos que presentan desafíos y requieren razonamiento lógico.
-- Participa en proyectos STEAM relacionados con el pensamiento lógico y la programación.
-
-## 🚀 Propósito
-
-Crear un entorno de aprendizaje donde los niños puedan desarrollar habilidades de pensamiento lógico de manera intuitiva, divertida y significativa, utilizando el juego como herramienta educativa.
+Ofrecer un recurso multimedia que complemente el desarrollo de una microclase sobre pensamiento lógico, mediante experiencias interactivas que permitan a los niños aprender jugando, experimentar y encontrar soluciones por sí mismos.
