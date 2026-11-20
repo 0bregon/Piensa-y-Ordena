@@ -163,8 +163,8 @@ body {
 }
 
 .mascota {
-  width: 9rem;
-  height: auto;
+  width: auto;
+  height: 11.7rem;
   margin-bottom: 0.6rem;
 }
 
@@ -252,7 +252,7 @@ dialog::backdrop { background: rgba(18, 41, 74, 0.6); }
   width: 100%;
   max-width: 70rem;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 2rem;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .tarjeta {
@@ -419,8 +419,8 @@ dialog::backdrop { background: rgba(18, 41, 74, 0.6); }
 }
 
 /* ---- Contenido educativo ---- */
-.bit { display: flex; align-items: flex-end; gap: 1.2rem; margin: 1rem 0 1.25rem; }
-.bit img { flex: none; width: 6rem; height: auto; }
+.personaje { display: flex; align-items: flex-end; gap: 1.2rem; margin: 1rem 0 1.25rem; }
+.personaje img { flex: none; width: auto; height: 7.5rem; }
 
 .globo {
   position: relative;
@@ -509,6 +509,109 @@ details li { margin-bottom: 0.4rem; }
 .tabla th, .tabla td { padding: 0.6rem 0.8rem; text-align: left; vertical-align: top; border-bottom: 0.15rem solid var(--borde); }
 .tabla th { background: #f2f9ff; }
 
+/* ---- Juego: ¡Encuentra el camino! ---- */
+.juego-cabecera { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.3rem 1.5rem; }
+.juego-cabecera h2 { margin: 0 0 0.6rem; }
+.niveles { display: flex; gap: 0.6rem; margin: 0 0 0.6rem; padding: 0; list-style: none; }
+
+.nivel-btn {
+  width: 2.8rem; height: 2.8rem;
+  font: inherit; font-size: 1.3rem; font-weight: bold;
+  color: var(--tinta); background: #f2f9ff;
+  border: 0.2rem solid var(--borde); border-radius: 50%; cursor: pointer;
+}
+.nivel-btn.hecho { background: #d9f2e3; border-color: #2a8a4f; }
+.nivel-btn.actual { color: var(--blanco); background: var(--azul); border-color: var(--azul-oscuro); }
+.nivel-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.consigna { margin: 0 0 0.75rem; font-size: 1.3rem; font-weight: bold; }
+
+.camino { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.zona-tablero { position: relative; display: grid; gap: 0.6rem; }
+
+.tablero {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--filas), 1fr);
+  aspect-ratio: var(--cols) / var(--filas);
+  width: min(100%, calc(50vh * var(--cols) / var(--filas)));
+  margin: 0 auto;
+  overflow: hidden;
+  border: 0.3rem solid var(--tinta);
+  border-radius: 1rem;
+}
+
+.celda.c0 { background: #8fdc6a; }
+.celda.c1 { background: #7ccf57; }
+
+.obj, .robot { position: absolute; display: flex; align-items: center; justify-content: center; }
+.obj svg { width: 82%; height: 82%; }
+.robot img { width: 100%; height: 100%; }
+.robot { z-index: 2; transition: left 0.45s ease, top 0.45s ease; }
+.robot img { object-fit: contain; }
+.robot.sacudir img { animation: sacudir 0.6s; }
+.robot.salta img { animation: salta 0.6s ease 3; }
+.estrella.recogida { animation: desaparecer 0.4s forwards; }
+
+.panel { display: grid; gap: 0.9rem; }
+.flechas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+
+.flecha-btn {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 1.5; padding: 0;
+  color: var(--blanco); background: var(--naranja-oscuro);
+  border: 0; border-bottom: 0.3rem solid #8f3806; border-radius: 1rem; cursor: grab;
+}
+
+.flecha-svg {
+  width: 62%; height: 62%;
+  fill: none; stroke: currentColor; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round;
+}
+.f-abajo { transform: rotate(180deg); }
+.f-izquierda { transform: rotate(-90deg); }
+.f-derecha { transform: rotate(90deg); }
+
+.rotulo { margin: 0; font-weight: bold; color: var(--azul); }
+
+.programa {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(3.4rem, 1fr)); gap: 0.5rem;
+  margin: 0; padding: 0.7rem; list-style: none;
+  background: #f2f9ff; border: 0.2rem dashed var(--borde); border-radius: 1rem;
+}
+
+.ranura {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; aspect-ratio: 1; padding: 0;
+  color: var(--blanco); background: var(--blanco);
+  border: 0.2rem solid var(--borde); border-radius: 0.7rem;
+}
+button.ranura.llena { background: var(--azul); border-color: var(--azul-oscuro); cursor: pointer; }
+.ranura.activa { color: var(--tinta); background: var(--amarillo); border-color: var(--tinta); }
+
+.acciones-juego { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.btn-juego {
+  padding: 0.6rem 1.3rem; min-height: 3.2rem;
+  font: inherit; font-size: 1.2rem; font-weight: bold;
+  color: var(--blanco); background: var(--azul);
+  border: 0; border-bottom: 0.3rem solid var(--azul-oscuro); border-radius: 0.8rem; cursor: pointer;
+}
+.btn-juego.jugar { flex: 1 1 auto; font-size: 1.5rem; background: #2a8a4f; border-bottom-color: #1d6338; }
+.btn-juego:focus-visible, .flecha-btn:focus-visible, .nivel-btn:focus-visible, button.ranura:focus-visible {
+  outline: 0.3rem solid var(--tinta); outline-offset: 0.15rem;
+}
+
+.mensaje { min-height: 3.2rem; margin: 0; font-size: 1.25rem; font-weight: bold; text-align: center; }
+
+.confeti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.pieza { position: absolute; top: -1rem; width: 0.8rem; height: 1.2rem; border-radius: 0.2rem; animation: caer 2s ease-in forwards; }
+
+@keyframes sacudir { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-12%); } 40%, 80% { transform: translateX(12%); } }
+@keyframes salta { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18%); } }
+@keyframes desaparecer { to { transform: scale(1.6); opacity: 0; } }
+@keyframes caer { to { transform: translateY(110%) rotate(360deg); opacity: 0.8; } }
+
 /* ==========================================================
    Pantallas anchas (computadoras y tabletas en horizontal)
    Título en una sola línea y tamaño calculado con más holgura,
@@ -525,7 +628,7 @@ details li { margin-bottom: 0.4rem; }
   }
 
   .botones { margin: 0.5rem 0; }
-  .mascota { width: 7.5rem; }
+  .mascota { height: 9.75rem; }
   .cinta { margin-bottom: 1.25rem; }
 }
 
@@ -538,18 +641,20 @@ details li { margin-bottom: 0.4rem; }
   .guia-columnas { grid-template-columns: 1fr; }
   .guia-contenido { padding: 1.25rem 1.25rem 1.5rem; }
   .mapa-lista { grid-template-columns: repeat(2, 1fr); }
+  .camino { grid-template-columns: 1fr; }
+  .tablero { width: min(100%, calc(40vh * var(--cols) / var(--filas))); }
   .tarjeta { padding: 1.25rem 1.25rem 1.5rem; }
 }
 
 /* Celulares */
 @media (max-width: 480px) {
   .escena { padding: 1rem 0.75rem 0; }
-  .mascota { width: 5.5rem; }
+  .mascota { height: 6.5rem; }
   .cinta { padding: 0.7rem 1.8rem 0.7rem 1.5rem; margin-bottom: 1rem; }
   .subtitulo { font-size: 1.1rem; }
   .interna { padding: 1rem 0.75rem 1.25rem; }
   .tarjeta h2 { font-size: 1.7rem; }
-  .bit img { width: 4.5rem; }
+  .personaje img { height: 5.5rem; }
   .globo { font-size: 1.1rem; }
   .idea { font-size: 1.25rem; }
   .mapa-lista { grid-template-columns: 1fr; }
@@ -566,6 +671,6 @@ details li { margin-bottom: 0.4rem; }
   .grande .circulo { width: 7.5rem; height: 7.5rem; }
   .etiqueta { font-size: 1.15rem; }
   .botones { margin: 0.5rem 0; }
-  .mascota { width: 4.5rem; }
+  .mascota { height: 5.85rem; }
   .cinta { margin-bottom: 0.75rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
 }
