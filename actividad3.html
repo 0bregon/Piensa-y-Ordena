@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¡Ordena las instrucciones! - Piensa y Ordena</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="actividad3">
+
+  <main id="app">
+    <section class="interna" aria-labelledby="titulo-pagina">
+      <div class="tarjeta">
+        <p class="etiqueta-seccion">Juego</p>
+        <div class="juego-cabecera">
+          <h2 id="titulo-pagina">¡Ordena las instrucciones!</h2>
+          <ol id="niveles" class="niveles" aria-label="Misiones"></ol>
+        </div>
+        <p id="consigna" class="consigna"></p>
+
+        <div class="camino">
+          <div class="zona-tablero">
+            <div id="escena" class="escena-mision" aria-label="Escenario de la misión">
+              <img id="pixel" class="pixel-escena" src="img/pixel.png" alt="Pixel">
+              <div id="objeto" class="objeto-escena"></div>
+              <div id="meta" class="meta-escena" aria-label="Así debe quedar"></div>
+              <div id="burbuja" class="burbuja" hidden></div>
+            </div>
+            <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+            <div id="confeti" class="confeti" aria-hidden="true"></div>
+          </div>
+
+          <div id="panel" class="panel">
+            <p class="rotulo">Pasos</p>
+            <ol id="secuencia" class="secuencia" aria-label="Pasos en orden"></ol>
+
+            <p class="rotulo">Tarjetas</p>
+            <div id="cartas" class="cartas" aria-label="Tarjetas disponibles"></div>
+
+            <div class="acciones-juego">
+              <button type="button" id="btn-siguiente" class="btn-juego jugar" hidden>Siguiente misión</button>
+              <button type="button" id="btn-ejecutar" class="btn-juego jugar ejecutar" aria-label="Ejecutar los pasos">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+              </button>
+              <button type="button" id="btn-pista" class="btn-juego">Pista</button>
+              <button type="button" id="btn-reiniciar" class="btn-juego">Reiniciar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- La barra de navegación y la ventana de ayuda las agrega js/app.js -->
+  <script src="js/app.js"></script>
+  <script src="js/secuencia-niveles.js"></script>
+  <script src="js/secuencia-logica.js"></script>
+  <script src="js/secuencia-vista.js"></script>
+</body>
+</html>
