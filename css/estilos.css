@@ -13,7 +13,7 @@
   --azul-oscuro: #134a8e;
   --amarillo: #ffc933;
   --naranja: #e8730f;        /* botones redondos */
-  --naranja-oscuro: #5640a8; /* cinta */
+  --naranja-oscuro: #c8500a; /* cinta */
   --blanco: #ffffff;
   --borde: #b9d6ee;
 
@@ -747,6 +747,79 @@ button.ranura.llena { background: var(--azul); border-color: var(--azul-oscuro);
 @keyframes encajar { 0% { transform: scale(0.4); } 65% { transform: scale(1.15); } 100% { transform: scale(1); } }
 @keyframes latido { 50% { box-shadow: 0 0 0 0.25rem rgba(26, 95, 180, 0.35); } }
 
+/* ---- Juego: ¡Ordena las instrucciones! (reutiliza .camino, .panel, .casilla, .pieza-bandeja, .btn-juego) ---- */
+.escena-mision {
+  position: relative;
+  width: min(100%, calc(46vh * 4 / 3));
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+  overflow: hidden;
+  background: linear-gradient(#cfeefc 0 64%, #8fdc6a 64%);
+  border: 0.3rem solid var(--tinta);
+  border-radius: 1rem;
+}
+
+.pixel-escena { position: absolute; left: 3%; bottom: 4%; height: 62%; width: auto; }
+.pixel-escena.salta { animation: salta 0.5s ease 2; }
+.pixel-escena.sacude { animation: sacudir 0.6s; }
+
+.objeto-escena { position: absolute; right: 4%; bottom: 6%; width: 50%; }
+.objeto-escena svg { display: block; width: 100%; }
+.objeto-escena.pop svg { animation: encajar 0.5s ease; }
+
+.meta-escena {
+  position: absolute; top: 4%; right: 4%; width: 25%; padding: 2%;
+  background: var(--blanco); border: 0.25rem solid var(--amarillo); border-radius: 0.8rem;
+}
+.meta-escena svg { display: block; width: 100%; }
+.meta-escena::after {                          /* estrella: "así debe quedar" */
+  content: ""; position: absolute; top: -0.9rem; left: -0.9rem; width: 1.8rem; height: 1.8rem;
+  background: var(--amarillo);
+  clip-path: polygon(50% 0, 62% 35%, 98% 38%, 69% 60%, 79% 95%, 50% 74%, 21% 95%, 31% 60%, 2% 38%, 38% 35%);
+}
+.meta-escena.pulsa { animation: latido 1s ease-in-out 3; }
+
+.burbuja {
+  position: absolute; top: 6%; left: 30%; width: 26%; aspect-ratio: 1; padding: 3%;
+  background: var(--blanco); border: 0.25rem solid var(--tinta); border-radius: 1.2rem;
+  animation: encajar 0.35s ease;
+}
+.burbuja svg { display: block; width: 100%; height: 100%; }
+.burbuja.duda { border-style: dashed; border-color: var(--naranja-oscuro); }
+.burbuja.duda::after {
+  content: "?"; position: absolute; top: -0.9rem; right: -0.7rem; width: 1.9rem; height: 1.9rem;
+  font-size: 1.2rem; font-weight: bold; line-height: 1.9rem; text-align: center;
+  color: var(--blanco); background: var(--naranja-oscuro); border-radius: 50%;
+}
+
+.secuencia {
+  display: flex; flex-wrap: wrap; gap: 1rem 1.4rem;
+  margin: 0; padding: 0.8rem 0.9rem; list-style: none;
+  background: #f2f9ff; border: 0.2rem dashed var(--borde); border-radius: 1rem;
+}
+.paso { position: relative; }
+.paso:not(:last-child)::after {                /* flecha entre pasos */
+  content: ""; position: absolute; top: 50%; right: -1.05rem; margin-top: -0.5rem;
+  border-style: solid; border-width: 0.5rem 0 0.5rem 0.75rem;
+  border-color: transparent transparent transparent var(--azul);
+}
+.hueco { position: relative; width: 4.3rem; height: 4.3rem; padding: 0.3rem; touch-action: none; }
+.hueco.lleno { background: #e2f1fd; border: 0.2rem solid var(--azul); cursor: grab; }
+.hueco.activo { background: var(--amarillo); border-color: var(--tinta); }
+.hueco svg { pointer-events: none; }
+.num {
+  position: absolute; top: -0.6rem; left: -0.6rem; width: 1.7rem; height: 1.7rem;
+  font-size: 1rem; font-weight: bold; line-height: 1.7rem; text-align: center;
+  color: var(--blanco); background: var(--naranja-oscuro); border-radius: 50%; pointer-events: none;
+}
+
+.cartas { display: flex; flex-wrap: wrap; gap: 0.7rem; min-height: 4.3rem; }
+.carta { width: 4.3rem; height: 4.3rem; }
+.carta.pista { border-color: var(--amarillo); box-shadow: 0 0 0 0.25rem rgba(255, 201, 51, 0.85); }
+
+.btn-juego.ejecutar { display: flex; align-items: center; justify-content: center; padding: 0.3rem 1.6rem; }
+.btn-juego.ejecutar svg { width: 2.4rem; height: 2.4rem; fill: var(--blanco); }
+
 /* ==========================================================
    Pantallas anchas (computadoras y tabletas en horizontal)
    Título en una sola línea y tamaño calculado con más holgura,
@@ -780,6 +853,7 @@ button.ranura.llena { background: var(--azul); border-color: var(--azul-oscuro);
   .mapa-lista { grid-template-columns: repeat(2, 1fr); }
   .camino { grid-template-columns: 1fr; }
   .rejilla { width: min(100%, 46vh); }
+  .escena-mision { width: min(100%, calc(40vh * 4 / 3)); }
   .tablero { width: min(100%, calc(40vh * var(--cols) / var(--filas))); }
   .tarjeta { padding: 1.25rem 1.25rem 1.5rem; }
 }

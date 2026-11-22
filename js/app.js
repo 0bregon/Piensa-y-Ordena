@@ -6,7 +6,7 @@
 
 // Orden del recorrido (Atrás y Adelante siguen esta lista)
 const ORDEN = ["inicio", "mapa", "aprendo1", "aprendo2", "video",
-               "actividad1", "actividad2", "cierre"];
+               "actividad1", "actividad2", "actividad3", "cierre"];
 
 const pagina = document.body.dataset.pagina;
 
@@ -48,6 +48,28 @@ function fijarSonido(valor) {
     boton.setAttribute("aria-pressed", String(sonido));
     boton.setAttribute("aria-label", sonido ? "Sonido activado" : "Sonido silenciado");
   }
+}
+
+/* ---- Sonido agradable para las actividades (respeta el botón Sonido) ---- */
+let contextoAudio = null;
+
+function tono(notas) {
+  if (!sonido) return;
+  try {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) return;
+    contextoAudio = contextoAudio || new Audio();
+    let t = contextoAudio.currentTime;
+    notas.forEach(function (hz) {
+      const osc = contextoAudio.createOscillator(), vol = contextoAudio.createGain();
+      osc.frequency.value = hz;
+      vol.gain.setValueAtTime(0.12, t);
+      vol.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+      osc.connect(vol); vol.connect(contextoAudio.destination);
+      osc.start(t); osc.stop(t + 0.22);
+      t += 0.13;
+    });
+  } catch (error) { /* sin sonido */ }
 }
 
 /* ---- Íconos de la barra ---- */

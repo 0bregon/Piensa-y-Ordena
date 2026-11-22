@@ -35,32 +35,11 @@
   let terminado = false;
   let arrastre = null;                          // figura que se está arrastrando
   let avance = leer("tableroAvance", 0);        // niveles superados (se recuerda en la sesión)
-  let audio = null;
 
   const nivel = function () { return NIVELES_TABLERO[indice]; };
   const figura = function (i) { return FIGURAS[nivel().figuras[i]]; };
   const dibujo = function (i) { return '<svg viewBox="0 0 40 40" aria-hidden="true">' + figura(i).svg + '</svg>'; };
   const mensaje = function (texto) { $("mensaje").textContent = texto; };
-
-  /* ---- Sonido agradable (opcional: respeta el botón Sonido) ---- */
-  function tono(notas) {
-    if (typeof sonido !== "undefined" && !sonido) return;
-    try {
-      const Audio = window.AudioContext || window.webkitAudioContext;
-      if (!Audio) return;
-      audio = audio || new Audio();
-      let t = audio.currentTime;
-      notas.forEach(function (hz) {
-        const osc = audio.createOscillator(), vol = audio.createGain();
-        osc.frequency.value = hz;
-        vol.gain.setValueAtTime(0.12, t);
-        vol.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
-        osc.connect(vol); vol.connect(audio.destination);
-        osc.start(t); osc.stop(t + 0.22);
-        t += 0.13;
-      });
-    } catch (error) { /* sin sonido */ }
-  }
 
   /* ---- Dibujar ---- */
   function dibujar() {
