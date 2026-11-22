@@ -583,7 +583,7 @@ details li { margin-bottom: 0.4rem; }
 /* ---- Juego: ¡Encuentra el camino! ---- */
 .juego-cabecera { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.3rem 1.5rem; }
 .juego-cabecera h2 { margin: 0 0 0.6rem; }
-.niveles { display: flex; gap: 0.6rem; margin: 0 0 0.6rem; padding: 0; list-style: none; }
+.niveles { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 0.6rem; padding: 0; list-style: none; }
 
 .nivel-btn {
   width: 2.8rem; height: 2.8rem;
@@ -820,6 +820,32 @@ button.ranura.llena { background: var(--azul); border-color: var(--azul-oscuro);
 .btn-juego.ejecutar { display: flex; align-items: center; justify-content: center; padding: 0.3rem 1.6rem; }
 .btn-juego.ejecutar svg { width: 2.4rem; height: 2.4rem; fill: var(--blanco); }
 
+/* ---- Juego: ¡Descubre qué sigue! (reutiliza .casilla, .pieza-bandeja, .cuenta, .personaje, .globo, .camino, .panel) ---- */
+.patron {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem 1.2rem;
+  margin: 0 0 1rem; padding: 1rem;
+  background: #f2f9ff; border: 0.3rem solid var(--tinta); border-radius: 1rem;
+}
+
+.celda { position: relative; width: 6rem; height: 6rem; min-width: 0; }
+.celda svg { width: 86%; height: 86%; }
+.celda.vacia { border-width: 0.25rem; }
+.celda.vacia::before { content: "?"; font-size: 2.6rem; font-weight: bold; color: var(--azul); }
+.celda.pista { border-color: var(--amarillo); box-shadow: 0 0 0 0.3rem rgba(255, 201, 51, 0.85); }
+
+.patron.agrupado .celda.g0 { background: #d6ecfb; border-color: var(--azul); }       /* los grupos que se repiten */
+.patron.agrupado .celda.g1 { background: #fff0c4; border-color: var(--naranja-oscuro); }
+
+.patron.cambios .celda:not(:last-child)::after {                                      /* flechas: cómo cambia cada figura */
+  content: ""; position: absolute; top: 50%; right: -1.05rem; margin-top: -0.5rem;
+  border-style: solid; border-width: 0.5rem 0 0.5rem 0.75rem;
+  border-color: transparent transparent transparent var(--naranja-oscuro);
+}
+
+.celda.ola svg { animation: ola 0.6s ease both; animation-delay: var(--d); }
+.celda.celebra svg { animation: salta 0.6s ease 2; animation-delay: var(--d); }
+@keyframes ola { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.3) rotate(-6deg); } }
+
 /* ==========================================================
    Pantallas anchas (computadoras y tabletas en horizontal)
    Título en una sola línea y tamaño calculado con más holgura,
@@ -864,6 +890,10 @@ button.ranura.llena { background: var(--azul); border-color: var(--azul-oscuro);
   .letrero { width: 42vw; }
   .escuela { display: none; }
   .subtitulo { font-size: 1.1rem; }
+  .celda { width: 4.2rem; height: 4.2rem; }
+  .niveles { gap: 0.4rem; }
+  .nivel-btn { width: 2.4rem; height: 2.4rem; font-size: 1.1rem; }
+  .patron { gap: 0.6rem 0.9rem; padding: 0.7rem; }
   .interna { padding: 1rem 0.75rem 1.25rem; }
   .tarjeta h2 { font-size: 1.7rem; }
   .personaje img { height: 5.5rem; }
