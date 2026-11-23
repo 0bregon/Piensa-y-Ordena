@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¡La torre de los discos! - Piensa y Ordena</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-pagina="actividad5">
+
+  <main id="app">
+    <section class="interna" aria-labelledby="titulo-pagina">
+      <div class="tarjeta">
+        <p class="etiqueta-seccion">Juego</p>
+        <div class="juego-cabecera">
+          <h2 id="titulo-pagina">¡La torre de los discos!</h2>
+          <ol id="niveles" class="niveles" aria-label="Niveles"></ol>
+        </div>
+        <p class="consigna">Lleva toda la torre a la varilla de la estrella.</p>
+
+        <div id="tablero" class="hanoi" aria-label="Tablero de la torre"></div>
+
+        <div class="hanoi-pie">
+          <div class="personaje compacto">
+            <img id="pixel" src="img/pixel.png" alt="Pixel">
+            <p id="mensaje" class="globo" role="status" aria-live="polite"></p>
+          </div>
+          <div class="acciones-juego">
+            <button type="button" id="btn-siguiente" class="btn-juego jugar" hidden>Siguiente nivel</button>
+            <button type="button" id="btn-deshacer" class="btn-juego">Deshacer</button>
+            <button type="button" id="btn-reiniciar" class="btn-juego">Reiniciar</button>
+            <button type="button" id="btn-pista" class="btn-juego">Pista</button>
+            <button type="button" id="btn-como" class="btn-juego" aria-label="Cómo se juega">¿Cómo?</button>
+          </div>
+        </div>
+        <div id="confeti" class="confeti" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CÓMO SE JUEGA: demostración animada -->
+  <dialog id="tutorial" aria-labelledby="tut-titulo">
+    <div class="guia-contenido">
+      <h2 id="tut-titulo">Cómo se juega</h2>
+      <div class="demo-caja">
+        <div id="demo" class="hanoi mini" aria-hidden="true"></div>
+        <span id="toque" class="toque" hidden></span>
+        <span id="signo" class="no-signo" hidden></span>
+        <div id="demo-confeti" class="confeti" aria-hidden="true"></div>
+      </div>
+      <p id="demo-texto" class="demo-texto" role="status"></p>
+      <div class="demo-nav">
+        <button type="button" id="demo-atras" class="btn-juego" aria-label="Paso anterior">&lsaquo;</button>
+        <ol id="demo-puntos" class="demo-puntos"></ol>
+        <button type="button" id="demo-sig" class="btn-juego" aria-label="Paso siguiente">&rsaquo;</button>
+      </div>
+      <button type="button" class="boton-secundario cerrar">¡A jugar!</button>
+    </div>
+  </dialog>
+
+  <!-- FELICITACIÓN FINAL (al completar el nivel 10) -->
+  <dialog id="final" aria-labelledby="final-titulo">
+    <div class="guia-contenido final-contenido">
+      <svg class="trofeo" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M18 8h28v16c0 9-6 15-14 15S18 33 18 24z" fill="#ffc933" stroke="#12294a" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M18 14H8c0 10 4 16 12 17M46 14h10c0 10-4 16-12 17" fill="none" stroke="#12294a" stroke-width="3" stroke-linecap="round"/>
+        <rect x="28" y="39" width="8" height="9" fill="#e8730f" stroke="#12294a" stroke-width="3"/>
+        <rect x="19" y="48" width="26" height="8" rx="2" fill="#1a5fb4" stroke="#12294a" stroke-width="3"/>
+      </svg>
+      <img class="final-pixel" src="img/pixel.png" alt="Pixel">
+      <h2 id="final-titulo">¡Lo lograste!</h2>
+      <p class="nota">Completaste los 10 niveles. ¡Eres un gran estratega!</p>
+      <div class="acciones">
+        <button type="button" id="btn-otra-vez" class="boton-secundario">Jugar otra vez</button>
+        <button type="button" class="boton-secundario cerrar">Cerrar</button>
+      </div>
+      <div id="final-confeti" class="confeti" aria-hidden="true"></div>
+    </div>
+  </dialog>
+
+  <!-- La barra de navegación y la ventana de ayuda las agrega js/app.js -->
+  <script src="js/app.js"></script>
+  <script src="js/hanoi-niveles.js"></script>
+  <script src="js/hanoi-logica.js"></script>
+  <script src="js/hanoi-vista.js"></script>
+</body>
+</html>
