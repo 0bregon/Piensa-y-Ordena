@@ -17,14 +17,10 @@
           <ol id="niveles" class="niveles" aria-label="Robots"></ol>
         </div>
 
-        <div class="camino">
+        <div class="camino camino-robot">
           <div class="zona-tablero">
             <div id="taller" class="taller" aria-label="Taller del robot">
               <div id="modelo" class="modelo" aria-label="Así debe quedar" hidden></div>
-            </div>
-            <div class="personaje compacto">
-              <img id="pixel" src="img/pixel.png" alt="Pixel">
-              <p id="mensaje" class="globo" role="status" aria-live="polite"></p>
             </div>
             <div id="confeti" class="confeti" aria-hidden="true"></div>
           </div>
@@ -38,7 +34,13 @@
               <p class="rotulo">Caja de sobrantes</p>
               <div id="caja-piezas" class="bandeja"></div>
             </div>
+          </div>
 
+          <div class="hanoi-pie">
+            <div class="personaje compacto">
+              <img id="pixel" src="img/pixel.png" alt="Pixel">
+              <p id="mensaje" class="globo" role="status" aria-live="polite"></p>
+            </div>
             <div class="acciones-juego">
               <button type="button" id="btn-siguiente" class="btn-juego jugar" hidden>Siguiente robot</button>
               <button type="button" id="btn-pista" class="btn-juego">Pista</button>
