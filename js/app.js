@@ -5,8 +5,7 @@
    ========================================================== */
 
 // Orden del recorrido (Atrás y Adelante siguen esta lista)
-const ORDEN = ["inicio", "mapa", "aprendo1", "aprendo2", "video",
-               "actividad1", "actividad2", "actividad3", "actividad4", "cierre"];
+const ORDEN = ["inicio", "mapa", "actividad1", "actividad2", "actividad3", "actividad4", "actividad5", "actividad6","creditos"];
 
 const pagina = document.body.dataset.pagina;
 
