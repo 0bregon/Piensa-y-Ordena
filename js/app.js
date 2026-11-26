@@ -1,11 +1,12 @@
+
 /* ==========================================================
    Piensa y Ordena - Lógica general
    Este archivo lo usan TODAS las páginas HTML.
-   Cada página dice cuál es con:  <body data-pagina="nombre">
+   Cada página dice cuál es con: <body data-pagina="nombre">
    ========================================================== */
 
-// Orden del recorrido (Atrás y Adelante siguen esta lista)
-const ORDEN = ["inicio", "mapa", "actividad1", "actividad2", "actividad3", "actividad4", "actividad5", "actividad6","creditos"];
+// Orden del recorrido
+const ORDEN = ["inicio", "mapa", "actividad1", "actividad2", "actividad3", "actividad4", "actividad5", "actividad6", "creditos"];
 
 const pagina = document.body.dataset.pagina;
 
@@ -14,7 +15,7 @@ function archivo(id) {
   return id === "inicio" ? "index.html" : id + ".html";
 }
 
-/* ---- Memoria de la sesión (se conserva al cambiar de página) ---- */
+/* ---- Memoria de la sesión ---- */
 function leer(clave, porDefecto) {
   try {
     const valor = sessionStorage.getItem(clave);
@@ -25,7 +26,9 @@ function leer(clave, porDefecto) {
 }
 
 function guardar(clave, valor) {
-  try { sessionStorage.setItem(clave, JSON.stringify(valor)); } catch (error) { /* sin memoria */ }
+  try {
+    sessionStorage.setItem(clave, JSON.stringify(valor));
+  } catch (error) { /*sin memoria*/ }
 }
 
 const visitadas = leer("visitadas", []);
@@ -34,7 +37,7 @@ if (!visitadas.includes(pagina)) {
   guardar("visitadas", visitadas);
 }
 
-let sonido = leer("sonido", true);   // lo usará el audio en etapas siguientes
+let sonido = leer("sonido", true);
 
 /* ---- Sonido activado o silenciado ---- */
 function fijarSonido(valor) {
@@ -49,7 +52,7 @@ function fijarSonido(valor) {
   }
 }
 
-/* ---- Sonido agradable para las actividades (respeta el botón Sonido) ---- */
+/* ---- Sonido agradable para las actividades ---- */
 let contextoAudio = null;
 
 function tono(notas) {
@@ -64,19 +67,19 @@ function tono(notas) {
       osc.frequency.value = hz;
       vol.gain.setValueAtTime(0.12, t);
       vol.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
-      osc.connect(vol); vol.connect(contextoAudio.destination);
-      osc.start(t); osc.stop(t + 0.22);
+      osc.connect(vol);
+      vol.connect(contextoAudio.destination);
+      osc.start(t);
+      osc.stop(t + 0.22);
       t += 0.13;
     });
-  } catch (error) { /* sin sonido */ }
+  } catch (error) { /*sin sonido*/ }
 }
 
 /* ---- Íconos de la barra ---- */
 const ICONOS = {
   inicio: '<path d="M12 3 2.5 11.5H5V20h5v-6h4v6h5v-8.5h2.5z"/>',
   mapa: '<path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/>',
-  atras: '<path class="trazo" d="M15 5l-7 7 7 7"/>',
-  adelante: '<path class="trazo" d="M9 5l7 7-7 7"/>',
   ayuda: '<circle cx="12" cy="12" r="10"/><text x="12" y="17.5" text-anchor="middle" font-size="15" font-weight="bold" font-family="Trebuchet MS, Verdana, sans-serif" fill="#1a5fb4">?</text>',
   sonidoOn: '<path d="M3 9v6h4l5 4V5L7 9z"/><path class="trazo" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a9 9 0 0 1 0 12"/>',
   sonidoOff: '<path d="M3 9v6h4l5 4V5L7 9z"/><path class="trazo" d="M16 9.5l5 5M21 9.5l-5 5"/>'
@@ -86,28 +89,13 @@ function icono(nombre, clase) {
   return '<svg class="icono ' + (clase || "") + '" viewBox="0 0 24 24" aria-hidden="true">' + ICONOS[nombre] + '</svg>';
 }
 
-/* ---- Barra de navegación y ayuda (todas las páginas menos Inicio) ---- */
+/* ---- Barra de navegación y ayuda ---- */
 function crearBarra() {
-  const i = ORDEN.indexOf(pagina);
-
-  // Atrás: la página anterior del recorrido (desde Créditos, vuelve a donde estabas)
-  const hrefAtras = (i > 0) ? archivo(ORDEN[i - 1]) : archivo("mapa");
-
-  // Adelante: la siguiente; en Cierre y Créditos está desactivado
-  const haySiguiente = (i >= 0 && i < ORDEN.length - 1);
-  const adelante = haySiguiente
-    ? '<a class="nav-btn principal" href="' + archivo(ORDEN[i + 1]) + '">'
-    : '<a class="nav-btn principal" aria-disabled="true">';
-
   document.body.insertAdjacentHTML("beforeend",
     '<nav id="barra" class="barra" aria-label="Navegación principal">' +
       '<div class="barra-grupo">' +
         '<a class="nav-btn" href="' + archivo("inicio") + '">' + icono("inicio") + 'Inicio</a>' +
         '<a class="nav-btn" href="' + archivo("mapa") + '">' + icono("mapa") + 'Mapa</a>' +
-      '</div>' +
-      '<div class="barra-grupo">' +
-        '<a id="btn-atras" class="nav-btn principal" href="' + hrefAtras + '">' + icono("atras") + 'Atrás</a>' +
-        adelante + icono("adelante") + 'Adelante</a>' +
       '</div>' +
       '<div class="barra-grupo">' +
         '<button type="button" id="btn-ayuda" class="nav-btn">' + icono("ayuda") + 'Ayuda</button>' +
@@ -124,22 +112,12 @@ function crearBarra() {
         '<ul>' +
           '<li><strong>Inicio</strong> te lleva a la primera pantalla.</li>' +
           '<li><strong>Mapa</strong> te deja elegir a dónde ir.</li>' +
-          '<li><strong>Atrás</strong> vuelve a la pantalla anterior.</li>' +
-          '<li><strong>Adelante</strong> pasa a la siguiente pantalla.</li>' +
           '<li><strong>Sonido</strong> enciende o apaga el sonido.</li>' +
           '<li><strong>Ayuda</strong> abre esta ventana.</li>' +
         '</ul>' +
         '<button type="button" class="boton-secundario cerrar">Cerrar</button>' +
       '</div>' +
     '</dialog>');
-
-  // Desde Créditos, "Atrás" regresa a la página donde estabas
-  document.getElementById("btn-atras").addEventListener("click", function (evento) {
-    if (pagina === "creditos" && history.length > 1) {
-      evento.preventDefault();
-      history.back();
-    }
-  });
 
   document.getElementById("btn-ayuda").addEventListener("click", function () {
     document.getElementById("ayuda").showModal();
@@ -170,6 +148,7 @@ function activarVentanas() {
     ventana.querySelector(".cerrar").addEventListener("click", function () {
       ventana.close();
     });
+
     // Cerrar también al tocar fuera de la tarjeta
     ventana.addEventListener("click", function (evento) {
       if (evento.target === ventana) ventana.close();
@@ -177,9 +156,9 @@ function activarVentanas() {
   });
 }
 
-/* ---- Narración: botón "Escuchar" (usa la voz del navegador) ---- */
+/* ---- Narración: botón "Escuchar" ---- */
 function activarEscuchar() {
-  if (!("speechSynthesis" in window)) return;   // sin voz, el botón queda oculto
+  if (!("speechSynthesis" in window)) return;
 
   document.querySelectorAll("[data-leer]").forEach(function (boton) {
     boton.insertAdjacentHTML("afterbegin", icono("sonidoOn"));
@@ -193,7 +172,9 @@ function activarEscuchar() {
       const voz = new SpeechSynthesisUtterance(texto);
       voz.lang = "es";
       voz.rate = 0.9;
-      const española = speechSynthesis.getVoices().find(function (v) { return v.lang.startsWith("es"); });
+      const española = speechSynthesis.getVoices().find(function (v) {
+        return v.lang.startsWith("es");
+      });
       if (española) voz.voice = española;
       speechSynthesis.speak(voz);
     });
